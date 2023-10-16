@@ -1232,11 +1232,21 @@
             }
         }
 
-        @media (max-width: 1024px) {}
+        @media (max-width: 1024px) {
+            body.is-touch .container.style1 {
+                background-attachment: scroll;
+                --background-parallax-intensity: 0.125 !important;
+            }
+        }
 
         @media (max-width: 980px) {
             html {
                 font-size: 11pt;
+            }
+
+            body.is-touch .container.style1 {
+                background-attachment: scroll;
+                --background-parallax-intensity: 0.125 !important;
             }
         }
 
@@ -1555,6 +1565,11 @@
 
             .icons.style2:not(:last-child) {
                 margin-bottom: 1.5rem !important;
+            }
+
+            body.is-touch .container.style1 {
+                background-attachment: scroll;
+                --background-parallax-intensity: 0.125 !important;
             }
         }
 
