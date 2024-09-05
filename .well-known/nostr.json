@@ -1,5 +1,12 @@
 {
   "names": {
     "turtlecute": "ee0304bae0d4679bb34347ce3b1b80482262b9812bd0c0d5e19a5e2445043b75" 
+  },
+  "relays": {
+    "ee0304bae0d4679bb34347ce3b1b80482262b9812bd0c0d5e19a5e2445043b75": [
+      "wss://relay.damus.io",
+      "wss://relay.primal.net",
+    ]
   }
 }
+
