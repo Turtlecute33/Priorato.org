@@ -1709,26 +1709,16 @@
                 filter: none !important;
             }
             .icon-img {
-  width: 1.5em;
-  height: 1.5em;
+  width: 100%;
+  height: auto;
+  max-width: 1.5em;     /* Prevents large scaling on mobile */
+  max-height: 1.5em;    /* Keeps it within the circle */
   display: block;
   margin: 0 auto;
-  padding: 0;
-  vertical-align: middle;
   object-fit: contain;
-}
-            ul.icons li a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25em;
+  padding: 0;
 }
 
-ul.icons img.icon-img {
-  display: block;
-  margin: 0;
-}
 
 
 
