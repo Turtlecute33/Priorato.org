@@ -1,27 +1,32 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="it">
 
 <head>
-    <title>il Priorato del Bitcoin, il Podcast in italiano su Bitcoin!</title>
+    <title>Il Priorato del Bitcoin - Podcast Italiano su Bitcoin, Privacy e Sicurezza</title>
     <meta charset="utf-8" />
-    <meta name="description" content="Il podcast su Bitcoin in italiano fatto da massimalisti" />
-    <meta name="keywords" content="Bitcoin, podcast, italiano, Podcast bitcoin ita, bitcoin ita, bitcoin italia, podcast italia">
+    <meta name="description" content="Il Priorato del Bitcoin: podcast settimanale in italiano su Bitcoin, sicurezza informatica e privacy. Ogni domenica, fatto dai cypherpunk per i cypherpunk!" />
+    <meta name="keywords" content="Bitcoin, podcast, italiano, podcast bitcoin italia, bitcoin italia, cypherpunk, privacy, sicurezza informatica, cybersecurity, cryptocurrency, priorato">
     <meta name="author" content="Turtlecute">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta property="og:locale" contenttup="it_IT"/>
+    <meta property="og:locale" content="it_IT"/>
     <meta property="og:site_name" content="Priorato del Bitcoin podcast" />
-    <meta property="og:title" content="Priorato del Bitcoin podcast" />
+    <meta property="og:title" content="Il Priorato del Bitcoin - Podcast Italiano su Bitcoin, Privacy e Sicurezza" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Il podcast su Bitcoin in italiano fatto da massimalisti" />
-    <meta property="og:image" content="img/preview.png" />
-    <meta property="twitter:image" content="img/preview.png">
+    <meta property="og:description" content="Il Priorato del Bitcoin: podcast settimanale in italiano su Bitcoin, sicurezza informatica e privacy. Ogni domenica, fatto dai cypherpunk per i cypherpunk!" />
+    <meta property="og:image" content="https://priorato.org/img/preview.png" />
+    <meta property="twitter:image" content="https://priorato.org/img/preview.png">
     <meta property="twitter:site" content="@turtlecute33" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1280" />
     <meta property="og:image:height" content="800" />
     <meta property="og:url" content="https://priorato.org" />
     <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Il Priorato del Bitcoin - Podcast Italiano su Bitcoin" />
+    <meta property="twitter:description" content="Podcast settimanale in italiano su Bitcoin, sicurezza informatica e privacy. Ogni domenica, fatto dai cypherpunk per i cypherpunk!" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#1B1C1C" />
     <link rel="canonical" href="https://priorato.org" />
+    <link rel="icon" type="image/png" href="img/coin.gif" />
     <link rel="preload"
         href="https://fonts.googleapis.com/css2?display=swap&family=Plus+Jakarta+Sans:ital,wght@0,500;1,500&family=Inter:ital,wght@0,300;0,400;1,300;1,400"
         as="style" onload="this.onload=null;this.rel='stylesheet'" />
@@ -759,25 +764,14 @@
             width: 100%;
         }
 
-        #container01 {
-            background-image: linear-gradient(45deg, rgba(84, 84, 84, 0.471) 0%, rgba(84, 84, 84, 0.251) 100%), url('img/0.webp');
-            background-position: 0% 0%, 50% calc(50% - (((var(--scroll-y, 0) * 1px) - (var(--element-top, 0) * 1px)) * var(--background-parallax-intensity, 0)));
-            background-repeat: repeat, no-repeat;
-            background-size: auto, auto;
-        }
-
-        #container07 {
-            background-image: linear-gradient(45deg, rgba(84, 84, 84, 0.471) 0%, rgba(84, 84, 84, 0.251) 100%), url('img/00.webp');
-            background-position: 0% 0%, 50% calc(50% - (((var(--scroll-y, 0) * 1px) - (var(--element-top, 0) * 1px)) * var(--background-parallax-intensity, 0)));
-            background-repeat: repeat, no-repeat;
-            background-size: auto, auto;
-        }
-
+        #container01,
+        #container07,
         #container02 {
-            background-image: linear-gradient(45deg, rgba(84, 84, 84, 0.471) 0%, rgba(84, 84, 84, 0.251) 100%), url('img/000.webp');
-            background-position: 0% 0%, 50% calc(50% - (((var(--scroll-y, 0) * 1px) - (var(--element-top, 0) * 1px)) * var(--background-parallax-intensity, 0)));
+            background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.35) 100%), url('a.png?v=2');
+            background-attachment: scroll, fixed;
+            background-position: 0% 0%, center center;
             background-repeat: repeat, no-repeat;
-            background-size: auto, auto;
+            background-size: auto, 48vw auto;
         }
 
         .image {
@@ -1056,7 +1050,7 @@
         h2.style2>*,
         h3.style2>*,
         p.style2>* {
-            display: inline-block line-height: 1.2;
+            display: inline-block; line-height: 1.2;
         }
 
         .buttons {
@@ -1222,6 +1216,34 @@
 
         .icons.style2 li a:hover+svg {
             transform: scale(1.06);
+        }
+
+        .buttons-row {
+            display: flex !important;
+            flex-direction: row !important;
+            width: 100%;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-top: 2rem !important;
+        }
+
+        .buttons-row .buttons.style1 {
+            flex: 0 1 auto;
+            margin: 0 !important;
+        }
+
+        .buttons-row .buttons.style1 li a {
+            min-width: 120px;
+            padding: 0 1.5rem;
+        }
+
+        #buttons03 {
+            justify-content: center;
+        }
+
+        #buttons03 li a {
+            min-width: 160px;
         }
 
         @media (max-width: 1920px) {
@@ -1622,6 +1644,20 @@
                 width: 100%;
             }
 
+            .buttons-row {
+                flex-direction: column !important;
+                align-items: center;
+            }
+
+            .buttons-row .buttons.style1 {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .buttons-row .buttons.style1 li a {
+                width: 100%;
+            }
+
             body.is-touch .container.style1 {
                 background-attachment: scroll;
                 --background-parallax-intensity: 0.125 !important;
@@ -1712,6 +1748,30 @@
 
         </style>
     </noscript>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "PodcastSeries",
+        "name": "Il Priorato del Bitcoin",
+        "description": "Il Podcast settimanale che parla di Bitcoin, sicurezza informatica e privacy ogni domenica e in lingua italiana. Fatto dai cypherpunk per i cypherpunk!",
+        "url": "https://priorato.org",
+        "inLanguage": "it",
+        "author": {
+            "@type": "Person",
+            "name": "Turtlecute",
+            "url": "https://turtlecute.org"
+        },
+        "genre": ["Bitcoin", "Cryptocurrency", "Privacy", "Cybersecurity"],
+        "webFeed": "https://anchor.fm/s/bd5d5b20/podcast/rss",
+        "sameAs": [
+            "https://open.spotify.com/show/51jZKEaXaYKypCICVHkkZE",
+            "https://podcasts.apple.com/us/podcast/il-priorato-del-bitcoin/id1668567418",
+            "https://x.com/turtlecute33",
+            "https://instagram.com/turtlecute33",
+            "https://t.me/turtlecute33"
+        ]
+    }
+    </script>
 </head>
 
 <body class="is-loading"><svg xmlns="http://www.w3.org/2000/svg" version="1.1"
@@ -1747,8 +1807,7 @@
                 <div id="container03" class="style2 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <div id="image01" class="style1 image"><span class="frame"><img width="100%" height="100%" alt="bitcoin 8 bit rotating" src="img/coin.gif"
-                                        alt="" /></span></div>
+                            <div id="image01" class="style1 image"><span class="frame"><img width="100%" height="100%" alt="Bitcoin 8-bit rotating coin animation" src="img/coin.gif" /></span></div>
                             <h1 id="text15" class="style6">Il Priorato del<br>₿itcoin</h1>
                             <p id="text06" class="style5">Il Podcast settimanale che parla di Bitcoin, sicurezza
                                 informatica e privacy ogni domenica e in lingua italiana. Fatto dai cypherpunk per i
@@ -1758,41 +1817,41 @@
                 </div>
                 <ul id="buttons03" class="style1 buttons">
                     <li><a href="https://btcpay.priorato.org/api/v1/invoices?storeId=2B1STLH5REvhHZBRQuyJNieRTexpeuJ4Usjn4ziEfEfd&checkoutDesc=Donazione+priorato+%3A3&browserRedirect=https%3A%2F%2Fpriorato.org&currency=EUR&defaultPaymentMethod=BTC_LNURLPAY"
-                            class="button n01"><svg>
+                            class="button n01" rel="noopener noreferrer"><svg>
                                 <use xlink:href="#icon-67ad41ecc66a1b1cd00d0d3b20c00017"></use>
                             </svg><span id="bitcoin" class="label">Indulgenza</span></a></li>
+                    <li><a href="https://guida.priorato.org"
+                            class="button n02" rel="noopener noreferrer" target="_blank"><svg>
+                                <use xlink:href="#icon-67ad41ecc66a1b1cd00d0d3b20c00017"></use>
+                            </svg><span class="label">Servizi</span></a></li>
                 </ul>
                 <div id="container01" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
                             <p id="text01" class="style4">podcast</p>
                             <h2 id="text03" class="style2">Ascolta</h2>
-                            <p id="text04" class="style5">Il podcast e' disponibile su tutte le principali piattaforme!
+                            <p id="text04" class="style5">Il podcast è disponibile su tutte le principali piattaforme!
                             </p>
 
-                            <div id="dani" style="display: flex; width: 100%; justify-content: space-between;">
-                                <br>
-                                <ul style="width: 30%; flex-shrink: 0" id="buttons02" class="style1 buttons danibutton">
+                            <div class="buttons-row">
+                                <ul id="buttons02" class="style1 buttons">
                                     <li><a href="https://open.spotify.com/show/51jZKEaXaYKypCICVHkkZE"
-                                            class="button n01"><svg>
+                                            class="button n01" rel="noopener noreferrer" target="_blank"><svg>
                                                 <use xlink:href="#icon-67ad41ecc66a1b1cd00d0d3b20c00017"></use>
                                             </svg><span class="label">Spotify</span></a></li>
                                 </ul>
-
-                                <ul style="width: 30%; flex-shrink: 0" id="buttons03" class="danibutton style1 buttons">
+                                <ul id="buttons04" class="style1 buttons">
                                     <li><a href="https://podcasts.apple.com/us/podcast/il-priorato-del-bitcoin/id1668567418"
-                                            class="button n01"><svg>
+                                            class="button n01" rel="noopener noreferrer" target="_blank"><svg>
                                                 <use xlink:href="#icon-67ad41ecc66a1b1cd00d0d3b20c00017"></use>
-                                            </svg><span class="label">Apple </span></a></li>
+                                            </svg><span class="label">Apple</span></a></li>
                                 </ul>
-
-                                <ul style="width: 30%; flex-shrink: 0" id="buttons03" class="danibutton style1 buttons">
-                                    <li><a href="http://www.subscribeonandroid.com/anchor.fm/s/bd5d5b20/podcast/rss"
-                                            class="button n01"><svg>
+                                <ul id="buttons05" class="style1 buttons">
+                                    <li><a href="https://www.subscribeonandroid.com/anchor.fm/s/bd5d5b20/podcast/rss"
+                                            class="button n01" rel="noopener noreferrer" target="_blank"><svg>
                                                 <use xlink:href="#icon-67ad41ecc66a1b1cd00d0d3b20c00017"></use>
-                                            </svg><span class="label">Altri </span></a></li>
+                                            </svg><span class="label">Altri</span></a></li>
                                 </ul>
-
                             </div>
 
                         </div>
@@ -1805,7 +1864,7 @@
                             <h2 id="text10" class="style2">Magliette</h2>
                             <p id="text11" class="style5">Magliette del priorato da sfoggiare ad ogni conferenza!</p>
                             <ul id="buttons02" class="style1 buttons">
-                                <li><a href="https://dona.priorato.org" class="button n01"><svg>
+                                <li><a href="https://dona.priorato.org" class="button n01" rel="noopener noreferrer"><svg>
                                             <use xlink:href="#icon-67ad41ecc66a1b1cd00d0d3b20c00017"></use>
                                         </svg><span class="label">Guarda</span></a></li>
                             </ul>
@@ -1817,10 +1876,10 @@
                         <div class="inner" data-onvisible-trigger="1">
                             <p id="text05" class="style4">Turtlecute</p>
                             <h2 id="text07" class="style2">Progetto</h2>
-                            <p id="text08" class="style5">Ti interessa quello che faccio? dai un occhiata al mio sito
+                            <p id="text08" class="style5">Ti interessa quello che faccio? Dai un'occhiata al mio sito
                                 personale pieno di guide e tutorial.</p>
                             <ul id="buttons01" class="style1 buttons">
-                                <li><a href="https://turtlecute.org" class="button n01"><svg>
+                                <li><a href="https://turtlecute.org" class="button n01" rel="noopener noreferrer" target="_blank"><svg>
                                             <use xlink:href="#icon-67ad41ecc66a1b1cd00d0d3b20c00017"></use>
                                         </svg><span class="label">Visita</span></a></li>
                             </ul>
@@ -1831,14 +1890,14 @@
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
                             <ul id="icons05" class="style2 icons">
-                                <li><a class="n01" href="https://x.com/turtlecute33" aria-label="X"><svg>
+                                <li><a class="n01" href="https://x.com/turtlecute33" aria-label="X" rel="noopener noreferrer" target="_blank"><svg>
                                             <use xlink:href="#icon-31b8880d36499db40d4e47546c4763f3"></use>
                                         </svg><span class="label">X</span></a></li>
                                 <li><a class="n02" href="https://instagram.com/turtlecute33"
-                                        aria-label="Instagram"><svg>
+                                        aria-label="Instagram" rel="noopener noreferrer" target="_blank"><svg>
                                             <use xlink:href="#icon-85976685de3e4af37529a1ce5d57d2a7"></use>
                                         </svg><span class="label">Instagram</span></a></li>
-                                <li><a class="n03" href="https://t.me/turtlecute33" aria-label="Message"><svg>
+                                <li><a class="n03" href="https://t.me/turtlecute33" aria-label="Telegram" rel="noopener noreferrer" target="_blank"><svg>
                                             <use xlink:href="#icon-3dc53231f6592396154e494d0058130c"></use>
                                         </svg><span class="label">Message</span></a></li>
                                 <li><a class="n04" href="mailto:Turtlecute@proton.me" aria-label="Email"><svg>
@@ -1847,7 +1906,7 @@
                             </ul>
                             <p id="text02" class="style5">
   Se sei un privacy addicted 👉 
-  <a href="https://privacyactivistkit.org" rel="dofollow" style="color: #40e0d0;">Privacy Activist Kit</a>
+  <a href="https://privacyactivistkit.org" rel="noopener noreferrer" target="_blank" style="color: #40e0d0;">Privacy Activist Kit</a>
 </p>
 
                         </div>
