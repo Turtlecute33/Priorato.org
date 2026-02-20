@@ -2403,15 +2403,16 @@
                         return;
                     }
 
-                    var bgHeight = Math.max(window.innerHeight * 1.6, 1200);
+                    var bgHeight = Math.max(window.innerHeight * 1.18, 900);
                     var viewportOffset = (window.innerHeight - bgHeight) * 0.5;
+                    var scrollY = window.scrollY || window.pageYOffset || 0;
 
-                    document.documentElement.style.setProperty('--mobile-bg-height', bgHeight.toFixed(2) + 'px');
+                    document.documentElement.style.setProperty('--mobile-bg-height', Math.round(bgHeight) + 'px');
 
                     this.elements.forEach(function (el) {
-                        var rect = el.getBoundingClientRect();
-                        var y = viewportOffset - rect.top;
-                        el.style.backgroundPosition = '0% 0%, center ' + y.toFixed(2) + 'px';
+                        var elementTop = el.offsetTop;
+                        var y = Math.round(viewportOffset + scrollY - elementTop);
+                        el.style.backgroundPosition = '0% 0%, center ' + y + 'px';
                     });
                 }
             };
