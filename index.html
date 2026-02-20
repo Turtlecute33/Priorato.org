@@ -2496,9 +2496,11 @@
                 },
                 update: function () {
                     var rawScrollY = window.scrollY || window.pageYOffset || 0;
-                    var scrollY = Math.round(rawScrollY / 2) * 2;
+                    var maxScrollY = Math.max(0, (document.documentElement.scrollHeight || document.body.scrollHeight || 0) - window.innerHeight);
+                    var clampedScrollY = Math.min(maxScrollY, Math.max(0, rawScrollY));
+                    var scrollY = Math.round(clampedScrollY / 8) * 8;
 
-                    if (this.lastSnapScrollY !== null && Math.abs(scrollY - this.lastSnapScrollY) < 2) return;
+                    if (this.lastSnapScrollY !== null && Math.abs(scrollY - this.lastSnapScrollY) < 8) return;
                     this.lastSnapScrollY = scrollY;
 
                     var fixedTop = this.fixedTop;
