@@ -1303,10 +1303,11 @@
             #container02 {
                 background-attachment: scroll, scroll;
                 background-size: auto, 120vw auto;
+                background-repeat: repeat, no-repeat;
             }
 
             #container01 {
-                background-position: 0% 0%, center 20%;
+                background-position: 0% 0%, center 30%;
             }
 
             #container07 {
@@ -1314,7 +1315,7 @@
             }
 
             #container02 {
-                background-position: 0% 0%, center 80%;
+                background-position: 0% 0%, center 70%;
             }
 
             #main {
@@ -2364,6 +2365,65 @@
                 }
             };
             scrollTracking.init();
+
+            var mobileParallax = {
+                elements: [],
+                enabled: false,
+                ticking: false,
+                mediaQuery: window.matchMedia('(max-width: 736px)'),
+                init: function () {
+                    var _this = this;
+                    this.elements = ['#container01', '#container07', '#container02']
+                        .map(function (selector) { return document.querySelector(selector); })
+                        .filter(Boolean);
+
+                    if (!this.elements.length) return;
+
+                    var handleChange = function () {
+                        _this.enabled = _this.mediaQuery.matches;
+                        _this.update();
+                    };
+
+                    if (this.mediaQuery.addEventListener) this.mediaQuery.addEventListener('change', handleChange);
+                    else this.mediaQuery.addListener(handleChange);
+
+                    on('scroll', function () {
+                        if (!_this.enabled || _this.ticking) return;
+                        _this.ticking = true;
+                        requestAnimationFrame(function () {
+                            _this.update();
+                            _this.ticking = false;
+                        });
+                    });
+
+                    on('resize', handleChange);
+                    on('load', handleChange);
+                    handleChange();
+                },
+                update: function () {
+                    if (!this.enabled) {
+                        this.elements.forEach(function (el) {
+                            el.style.removeProperty('background-position');
+                        });
+                        return;
+                    }
+
+                    var viewportCenter = window.innerHeight * 0.5;
+                    var anchors = [30, 50, 70];
+
+                    this.elements.forEach(function (el, index) {
+                        var rect = el.getBoundingClientRect();
+                        var elementCenter = rect.top + (rect.height * 0.5);
+                        var delta = (elementCenter - viewportCenter) * -0.06;
+                        var base = anchors[index] || 50;
+                        var y = base + delta;
+                        el.style.backgroundPosition = '0% 0%, center calc(' + y.toFixed(2) + '%)';
+                    });
+                }
+            };
+
+            mobileParallax.init();
+
             var onvisible = {
                 effects: {
                     'blur-in': {
