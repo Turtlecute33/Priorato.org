@@ -779,7 +779,7 @@
             background-attachment: scroll, fixed;
             background-position: 0% 0%, center center;
             background-repeat: repeat, no-repeat;
-            background-size: auto, 48vw auto;
+            background-size: auto, clamp(640px, 48vw, 900px) auto;
         }
 
 
@@ -1284,7 +1284,24 @@
             }
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1280px) and (min-width: 737px) {
+            #container01,
+            #container07,
+            #container02 {
+                background-attachment: scroll, scroll;
+                background-position: 0% 0%, center 35%;
+                background-size: auto, clamp(560px, 72vw, 840px) auto;
+            }
+        }
+
+        @media (max-width: 1024px) and (min-width: 737px) {
+            #container01,
+            #container07,
+            #container02 {
+                background-position: 0% 0%, center 30%;
+                background-size: auto, clamp(520px, 82vw, 780px) auto;
+            }
+
             body.is-touch .container.style1 {
                 background-attachment: scroll;
                 --background-parallax-intensity: 0.125 !important;
