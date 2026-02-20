@@ -1304,11 +1304,11 @@
             #container07,
             #container02 {
                 background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.35) 100%), url('a.png?v=2');
-                background-attachment: scroll, scroll;
-                background-position: 0% 0%, center var(--mobile-bg-y);
+                background-attachment: scroll, fixed;
+                background-position: 0% 0%, center center;
                 background-repeat: repeat, no-repeat;
-                background-size: auto, auto var(--mobile-bg-height);
-                will-change: background-position;
+                background-size: auto, 120vw auto;
+                will-change: auto;
             }
 
             #main {
@@ -2417,7 +2417,7 @@
                 }
             };
 
-            mobileParallax.init();
+            // Disabled: CSS fixed background gives smoother cross-card behavior on Safari/Android.
 
             var onvisible = {
                 effects: {
