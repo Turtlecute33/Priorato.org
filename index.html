@@ -1308,6 +1308,7 @@
                 background-position: 0% 0%, center var(--mobile-bg-y);
                 background-repeat: repeat, no-repeat;
                 background-size: auto, auto var(--mobile-bg-height);
+                will-change: background-position;
             }
 
             #main {
@@ -2402,8 +2403,7 @@
                         return;
                     }
 
-                    var docHeight = Math.max(window.innerHeight, document.body.scrollHeight);
-                    var bgHeight = Math.max(window.innerHeight * 1.9, docHeight * 1.35);
+                    var bgHeight = Math.max(window.innerHeight * 1.6, 1200);
                     var viewportOffset = (window.innerHeight - bgHeight) * 0.5;
 
                     document.documentElement.style.setProperty('--mobile-bg-height', bgHeight.toFixed(2) + 'px');
