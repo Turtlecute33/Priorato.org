@@ -204,6 +204,12 @@
             word-wrap: break-word;
         }
 
+        html,
+        body {
+            background-color: #1B1C1C;
+            overscroll-behavior-y: none;
+        }
+
         body:before {
             background-attachment: scroll;
             content: '';
@@ -2439,6 +2445,7 @@
                 elements: [],
                 elementTops: [],
                 fixedTop: 0,
+                lastSnapScrollY: null,
                 mobileQuery: window.matchMedia('(max-width: 736px)'),
                 init: function () {
                     if (!document.body.classList.contains('is-safari')) return;
@@ -2481,13 +2488,19 @@
                     var vh = window.innerHeight;
                     var imageHeight = isMobile ? Math.max(vh * 1.45, 900) : Math.max(vh * 1.25, 900);
                     this.fixedTop = Math.round((vh - imageHeight) * 0.5);
+                    this.lastSnapScrollY = null;
 
                     document.documentElement.style.setProperty('--safari-bg-size', 'auto ' + Math.round(imageHeight) + 'px');
 
                     this.elementTops = this.elements.map(function (el) { return Math.round(el.offsetTop); });
                 },
                 update: function () {
-                    var scrollY = Math.round(window.scrollY || window.pageYOffset || 0);
+                    var rawScrollY = window.scrollY || window.pageYOffset || 0;
+                    var scrollY = Math.round(rawScrollY / 2) * 2;
+
+                    if (this.lastSnapScrollY !== null && Math.abs(scrollY - this.lastSnapScrollY) < 2) return;
+                    this.lastSnapScrollY = scrollY;
+
                     var fixedTop = this.fixedTop;
 
                     this.elements.forEach(function (el, index) {
