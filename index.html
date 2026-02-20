@@ -2437,6 +2437,8 @@
                 enabled: false,
                 ticking: false,
                 elements: [],
+                elementTops: [],
+                fixedTop: 0,
                 mobileQuery: window.matchMedia('(max-width: 736px)'),
                 init: function () {
                     if (!document.body.classList.contains('is-safari')) return;
@@ -2448,6 +2450,7 @@
                     if (!this.elements.length) return;
 
                     this.enabled = true;
+                    this.recalculate();
                     this.update();
 
                     var _this = this;
@@ -2461,29 +2464,36 @@
                     });
 
                     on('resize', function () {
+                        _this.recalculate();
                         _this.update();
                     });
 
                     on('load', function () {
+                        _this.recalculate();
                         _this.update();
                     });
 
-                    if (this.mobileQuery.addEventListener) this.mobileQuery.addEventListener('change', function () { _this.update(); });
-                    else this.mobileQuery.addListener(function () { _this.update(); });
+                    if (this.mobileQuery.addEventListener) this.mobileQuery.addEventListener('change', function () { _this.recalculate(); _this.update(); });
+                    else this.mobileQuery.addListener(function () { _this.recalculate(); _this.update(); });
                 },
-                update: function () {
+                recalculate: function () {
                     var isMobile = this.mobileQuery.matches;
                     var vh = window.innerHeight;
                     var imageHeight = isMobile ? Math.max(vh * 1.45, 900) : Math.max(vh * 1.25, 900);
-                    var fixedTop = Math.round((vh - imageHeight) * 0.5);
+                    this.fixedTop = Math.round((vh - imageHeight) * 0.5);
 
                     document.documentElement.style.setProperty('--safari-bg-size', 'auto ' + Math.round(imageHeight) + 'px');
 
-                    this.elements.forEach(function (el) {
-                        var top = Math.round(el.getBoundingClientRect().top);
-                        var y = fixedTop - top;
+                    this.elementTops = this.elements.map(function (el) { return Math.round(el.offsetTop); });
+                },
+                update: function () {
+                    var scrollY = Math.round(window.scrollY || window.pageYOffset || 0);
+                    var fixedTop = this.fixedTop;
+
+                    this.elements.forEach(function (el, index) {
+                        var y = fixedTop + scrollY - (index < 3 ? this.elementTops[index] : Math.round(el.offsetTop));
                         el.style.backgroundPosition = '0% 0%, center ' + y + 'px';
-                    });
+                    }, this);
                 }
             };
 
