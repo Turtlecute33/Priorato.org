@@ -2360,9 +2360,13 @@
             var mobileParallax = {
                 enabled: false,
                 ticking: false,
+                elements: [],
                 mediaQuery: window.matchMedia('(max-width: 736px)'),
                 init: function () {
                     var _this = this;
+                    this.elements = ['#container01', '#container07', '#container02']
+                        .map(function (selector) { return document.querySelector(selector); })
+                        .filter(Boolean);
 
                     var handleChange = function () {
                         _this.enabled = _this.mediaQuery.matches;
@@ -2386,15 +2390,27 @@
                     handleChange();
                 },
                 update: function () {
+                    if (!this.elements.length) return;
+
                     if (!this.enabled) {
-                        document.documentElement.style.setProperty('--mobile-bg-y', '50%');
+                        this.elements.forEach(function (el) {
+                            el.style.removeProperty('background-position');
+                        });
                         return;
                     }
 
-                    var scrollRange = Math.max(1, document.body.scrollHeight - window.innerHeight);
+                    var docHeight = Math.max(1, document.body.scrollHeight);
+                    var scrollRange = Math.max(1, docHeight - window.innerHeight);
                     var progress = Math.min(1, Math.max(0, window.scrollY / scrollRange));
-                    var y = 35 + (progress * 30);
-                    document.documentElement.style.setProperty('--mobile-bg-y', y.toFixed(2) + '%');
+                    var globalOffset = (progress - 0.5) * 16;
+
+                    this.elements.forEach(function (el) {
+                        var rect = el.getBoundingClientRect();
+                        var elementCenterInDoc = window.scrollY + rect.top + (rect.height * 0.5);
+                        var normalized = Math.min(1, Math.max(0, elementCenterInDoc / docHeight));
+                        var y = 20 + (normalized * 60) + globalOffset;
+                        el.style.backgroundPosition = '0% 0%, center ' + y.toFixed(2) + '%';
+                    });
                 }
             };
 
