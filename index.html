@@ -232,6 +232,8 @@
             --viewport-height: 100vh;
             --mobile-bg-y: 0px;
             --mobile-bg-height: 100vh;
+            --safari-bg-y: 0px;
+            --safari-bg-size: auto 140vh;
         }
 
         html {
@@ -774,6 +776,14 @@
             background-position: 0% 0%, center center;
             background-repeat: repeat, no-repeat;
             background-size: auto, 48vw auto;
+        }
+
+        body.is-safari #container01,
+        body.is-safari #container07,
+        body.is-safari #container02 {
+            background-attachment: scroll, scroll;
+            background-position: 0% 0%, center var(--safari-bg-y);
+            background-size: auto, var(--safari-bg-size);
         }
 
         .image {
@@ -2199,6 +2209,10 @@
                     }
                 })();
             }
+            if (client.browser == 'safari') {
+                $body.classList.add('is-safari');
+            }
+
             if (client.os == 'android') {
                 (function () {
                     sheet.insertRule('body::after { }', 0);
@@ -2418,6 +2432,62 @@
             };
 
             // Disabled: CSS fixed background gives smoother cross-card behavior on Safari/Android.
+
+            var safariBackgroundStabilizer = {
+                enabled: false,
+                ticking: false,
+                elements: [],
+                mobileQuery: window.matchMedia('(max-width: 736px)'),
+                init: function () {
+                    if (!document.body.classList.contains('is-safari')) return;
+
+                    this.elements = ['#container01', '#container07', '#container02']
+                        .map(function (selector) { return document.querySelector(selector); })
+                        .filter(Boolean);
+
+                    if (!this.elements.length) return;
+
+                    this.enabled = true;
+                    this.update();
+
+                    var _this = this;
+                    on('scroll', function () {
+                        if (!_this.enabled || _this.ticking) return;
+                        _this.ticking = true;
+                        requestAnimationFrame(function () {
+                            _this.update();
+                            _this.ticking = false;
+                        });
+                    });
+
+                    on('resize', function () {
+                        _this.update();
+                    });
+
+                    on('load', function () {
+                        _this.update();
+                    });
+
+                    if (this.mobileQuery.addEventListener) this.mobileQuery.addEventListener('change', function () { _this.update(); });
+                    else this.mobileQuery.addListener(function () { _this.update(); });
+                },
+                update: function () {
+                    var isMobile = this.mobileQuery.matches;
+                    var vh = window.innerHeight;
+                    var imageHeight = isMobile ? Math.max(vh * 1.45, 900) : Math.max(vh * 1.25, 900);
+                    var fixedTop = Math.round((vh - imageHeight) * 0.5);
+
+                    document.documentElement.style.setProperty('--safari-bg-size', 'auto ' + Math.round(imageHeight) + 'px');
+
+                    this.elements.forEach(function (el) {
+                        var top = Math.round(el.getBoundingClientRect().top);
+                        var y = fixedTop - top;
+                        el.style.backgroundPosition = '0% 0%, center ' + y + 'px';
+                    });
+                }
+            };
+
+            safariBackgroundStabilizer.init();
 
             var onvisible = {
                 effects: {
