@@ -2403,15 +2403,14 @@
                     }
 
                     var docHeight = Math.max(window.innerHeight, document.body.scrollHeight);
-                    var bgHeight = Math.max(window.innerHeight * 1.6, docHeight * 1.25);
-                    var imageTopInDoc = 0;
+                    var bgHeight = Math.max(window.innerHeight * 1.9, docHeight * 1.35);
+                    var viewportOffset = (window.innerHeight - bgHeight) * 0.5;
 
                     document.documentElement.style.setProperty('--mobile-bg-height', bgHeight.toFixed(2) + 'px');
 
                     this.elements.forEach(function (el) {
                         var rect = el.getBoundingClientRect();
-                        var elementTopInDoc = window.scrollY + rect.top;
-                        var y = imageTopInDoc - elementTopInDoc;
+                        var y = viewportOffset - rect.top;
                         el.style.backgroundPosition = '0% 0%, center ' + y.toFixed(2) + 'px';
                     });
                 }
