@@ -232,6 +232,7 @@
             --viewport-height: 100vh;
             --mobile-bg-y: 0px;
             --mobile-bg-height: 100vh;
+            --safari-bg-y: 50%;
         }
 
         html {
@@ -774,6 +775,13 @@
             background-position: 0% 0%, center center;
             background-repeat: repeat, no-repeat;
             background-size: auto, 48vw auto;
+        }
+
+        body.is-safari #container01,
+        body.is-safari #container07,
+        body.is-safari #container02 {
+            background-attachment: scroll, scroll;
+            background-position: 0% 0%, center var(--safari-bg-y);
         }
 
         .image {
@@ -2199,6 +2207,10 @@
                     }
                 })();
             }
+            if (client.browser == 'safari') {
+                $body.classList.add('is-safari');
+            }
+
             if (client.os == 'android') {
                 (function () {
                     sheet.insertRule('body::after { }', 0);
@@ -2418,6 +2430,52 @@
             };
 
             // Disabled: CSS fixed background gives smoother cross-card behavior on Safari/Android.
+
+            var safariBackgroundLock = {
+                enabled: false,
+                ticking: false,
+                elements: [],
+                init: function () {
+                    if (!document.body.classList.contains('is-safari')) return;
+
+                    this.elements = ['#container01', '#container07', '#container02']
+                        .map(function (selector) { return document.querySelector(selector); })
+                        .filter(Boolean);
+
+                    if (!this.elements.length) return;
+
+                    this.enabled = true;
+                    this.update();
+
+                    var _this = this;
+                    on('scroll', function () {
+                        if (!_this.enabled || _this.ticking) return;
+                        _this.ticking = true;
+                        requestAnimationFrame(function () {
+                            _this.update();
+                            _this.ticking = false;
+                        });
+                    });
+
+                    on('resize', function () {
+                        _this.update();
+                    });
+
+                    on('load', function () {
+                        _this.update();
+                    });
+                },
+                update: function () {
+                    var viewportCenter = (window.scrollY || window.pageYOffset || 0) + (window.innerHeight * 0.5);
+
+                    this.elements.forEach(function (el) {
+                        var y = Math.round(viewportCenter - el.offsetTop);
+                        el.style.backgroundPosition = '0% 0%, center ' + y + 'px';
+                    });
+                }
+            };
+
+            safariBackgroundLock.init();
 
             var onvisible = {
                 effects: {
